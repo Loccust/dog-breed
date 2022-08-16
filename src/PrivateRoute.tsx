@@ -1,11 +1,8 @@
-import { UserContext } from "./contexts/UserContext";
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
-  const auth = useContext(UserContext);
-  console.log(auth.user);
-  if (!auth.user) {
+  const token = localStorage.getItem("token");
+  if (!token) {
     // Redirect them to the /register page
     return <Navigate to="/register" />;
   }

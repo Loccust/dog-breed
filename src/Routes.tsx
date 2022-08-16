@@ -3,7 +3,7 @@ import { UserProvider } from "./contexts/UserContext";
 import PrivateRoute from "./PrivateRoute";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
-import List from "./pages/List";
+import List from "./pages/DogList";
 
 export default function Router() {
   return (

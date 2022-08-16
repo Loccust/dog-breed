@@ -1,7 +1,7 @@
 import UserRegisterModel from "../models/RegisterUser";
 import userService from "../services/user.service";
 import useModel from "../hooks/useModel";
-import IUserData from "../types/IUserData";
+import { IUserData } from "../types/IUserData";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -19,10 +19,16 @@ export default function Register() {
 
   const handleRegister = async () => {
     const userResponse = await userService.register(userRegister);
-    setUserRegister(initialRegisterUser);
-    auth.setUser(userResponse);
-    console.log(auth);
-    navigate("/");
+    debugger;
+    if (userResponse.status === 200) {
+      setUserRegister(initialRegisterUser);
+      const { token, ...userData } = userResponse.data.user;
+      auth.setUser(userData);
+      localStorage.setItem("token", token);
+      navigate("/");
+    } else {
+      console.log(userResponse.status);
+    }
   };
 
   return (

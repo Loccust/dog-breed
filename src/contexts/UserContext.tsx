@@ -1,27 +1,22 @@
-import { useEffect } from "react";
 import { createContext, useState } from "react";
-import IUserData from "../types/IUserData";
+import {IUser} from "../types/IUserData";
 
+type UserDataContext = Omit<IUser, "token"> | undefined; 
 interface IUserContext {
-  user: IUserData | undefined;
-  setUser: (user: IUserData) => void;
+  user: UserDataContext;
+  setUser: (user: UserDataContext) => void;
 }
 const DEFAULT_VALUE: IUserContext = {
   user: undefined,
-  setUser: (user: IUserData) => {},
+  setUser: () => {},
 };
 const UserContext = createContext<IUserContext>(DEFAULT_VALUE);
 
 const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<IUserData | undefined>(DEFAULT_VALUE.user);
-
-  const handleChangeUser = (user: IUserData) => {
-    console.log(user);
-    setUser(user);
-  };
+  const [user, setUser] = useState<UserDataContext>(DEFAULT_VALUE.user);
 
   return (
-    <UserContext.Provider value={{ user, setUser: handleChangeUser }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   );
