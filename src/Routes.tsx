@@ -4,10 +4,14 @@ import PrivateRoute from "./PrivateRoute";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import List from "./pages/DogList";
+import Header from "./components/Header";
 
 export default function Router() {
   return (
-    <UserProvider>
+    <>
+      <UserProvider>
+        <Header />
+      </UserProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/register" element={<Register />} />
@@ -22,6 +26,6 @@ export default function Router() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </UserProvider>
+    </>
   );
 }

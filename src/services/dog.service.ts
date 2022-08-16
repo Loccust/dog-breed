@@ -1,4 +1,4 @@
-import IDogList from "../types/IDogList";
+import IDogList from "../common/types/IDogList";
 import http from "./http-common";
 
 const getList = async (breed?: string) => {

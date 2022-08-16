@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import {IUser} from "../types/IUserData";
+import {IUser} from "../common/types/IUserData";
 
 type UserDataContext = Omit<IUser, "token"> | undefined; 
 interface IUserContext {
