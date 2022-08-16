@@ -45,22 +45,23 @@ export default function DogList() {
     }
   };
 
+  const BREEDS = ["chihuahua", "husky", "labrador", "pug"];
+
   return (
     <>
       <Heading as="h5" size="sm" mx={10} mt={3}>
         Dog List
       </Heading>
-      <ButtonGroup variant="ghost" size="xs" spacing="3" px={10} py={2}>
-        <Button onClick={() => navigate({ search: "?breed=chihuahua" })}>
-          Chihuahua
-        </Button>
-        <Button onClick={() => navigate({ search: "?breed=pug" })}>Pug</Button>
-        <Button onClick={() => navigate({ search: "?breed=husky" })}>
-          Husky
-        </Button>
-        <Button onClick={() => navigate({ search: "?breed=labrador" })}>
-          Labrador
-        </Button>
+      <ButtonGroup size="xs" spacing="3" px={10} py={2}>
+        {BREEDS.map((breedListed) => (
+          <Button
+            onClick={() => navigate({ search: `?breed=${breedListed}` })}
+            variant={breed == breedListed ? "solid" : "ghost"}
+            colorScheme={breed == breedListed ? "blue" : "black"}
+          >
+            {breedListed.charAt(0).toUpperCase() + breedListed.slice(1)}
+          </Button>
+        ))}
       </ButtonGroup>
 
       <Grid
